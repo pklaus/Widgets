@@ -63,12 +63,18 @@
     }
   </style>
   <script type="text/javascript">
+    function setInitialQRcode(){
+      setQRcodeTo("http://pklaus.github.com/Widgets");
+    }
     function updateQRcode(){
       //get field value
       var text = document.getElementById("inputText").value;
+      setQRcodeTo(text);
+    }
+    function setQRcodeTo( text ){
       var encodedText = escape(text);
       //build new url
-      var src    = "https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chl="+encodedText;
+      var src    = "https://chart.googleapis.com/chart?cht=qr&chs=200x200&chld=Q&choe=UTF-8&chl="+encodedText;
       var image = document.getElementById("qrcode");
       image.src = src;
     }
@@ -88,11 +94,11 @@
     });
   </script>
 </head>
-<body onload="updateQRcode();">
+<body onload="setInitialQRcode();">
   <div id="qrCodeGenerator">
     <h1>QR Code Generator</h1>
     <form action="javascript:updateQRcode()">
-      <input id="inputText" type="text" onchange="this.form.submit();" value="http://github.com/pklaus/Widgets" />
+      <input id="inputText" type="text" onchange="this.form.submit();" " />
     </form>
     <img id="qrcode" src="" alt="QR-Code Creator" />
     <p id="about"> <a href="https://github.com/pklaus/Widgets" alt="Author and source code of this widget.">github.com/pklaus/Widgets</a> | <a href="http://code.google.com/apis/chart/infographics/docs/qr_codes.html" alt="QR Code Creation using Google Chart Tools">Google QR Codes</a></p>
